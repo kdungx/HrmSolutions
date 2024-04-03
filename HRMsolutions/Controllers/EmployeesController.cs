@@ -104,5 +104,11 @@ namespace HrmSolutions.Controllers
         {
             return _context.Employees.Any(e => e.Id == id);
         }
+        [HttpGet("search")]
+        public IActionResult SearchByName(string name)
+        {
+            var employees = _context.Employees.Where(e => e.Name.Contains(name)).ToList();
+            return Ok(employees);
+        }
     }
 }
